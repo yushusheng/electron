@@ -1,0 +1,60 @@
+{
+  "name": "trae-electron",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "electron:dev": "NODE_ENV=development electron electron/main.js",
+    "electron:build": "vite build && electron-builder",
+    "start": "node scripts/dev.js"
+  },
+  "main": "electron/main.js",
+  "build": {
+    "appId": "com.trae.app",
+    "productName": "今天穿什么",
+    "directories": {
+      "output": "release"
+    },
+    "electronDownload": {
+      "mirror": "https://npmmirror.com/mirrors/electron/"
+    },
+    "mac": {
+      "category": "public.app-category.developer-tools"
+    },
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": ["x64", "arm64"]
+        }
+      ],
+      "artifactName": "${productName}-Setup-${version}.${ext}"
+    },
+    "linux": {
+      "target": [
+        "AppImage",
+        "deb"
+      ]
+    },
+    "files": [
+      "dist/**/*",
+      "electron/**/*"
+    ]
+  },
+  "dependencies": {
+    "element-plus": "^2.3.8",
+    "pinia": "^2.1.7",
+    "vue": "^3.3.4"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^4.2.3",
+    "electron": "^25.8.4",
+    "electron-builder": "^24.6.4",
+    "sass": "^1.86.0",
+    "sass-loader": "^16.0.5",
+    "vite": "^4.4.9",
+    "vue": "^3.3.4"
+  }
+}
